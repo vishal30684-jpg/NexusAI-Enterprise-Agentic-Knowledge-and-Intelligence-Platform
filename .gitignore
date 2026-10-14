@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+.pytest_cache/
+uploads/
+*.py[cod]
+*.log
+
+large_test.txt
+sample_nexus.exe
+employee_leave_policy.txt
+sample_nexus.txt

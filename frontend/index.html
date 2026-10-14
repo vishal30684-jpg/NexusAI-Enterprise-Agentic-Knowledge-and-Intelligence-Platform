@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusAI — Document Assistant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">N</div>
+                <div>
+                    <h2>NexusAI</h2>
+                    <p>Document Intelligence</p>
+                </div>
+            </div>
+
+            <button id="new-chat-btn" class="new-chat-btn">
+                + New conversation
+            </button>
+
+            
+            <div class="sidebar-label">WORKSPACE</div>
+
+            <button type="button" id="documents-btn" class="sidebar-item">
+                📄 Documents
+            </button>
+
+            <button type="button" id="upload-btn" class="sidebar-item">
+                ⬆ Upload document
+            </button>
+
+            
+            <button type="button" id="history-btn" class="sidebar-item">
+                💬 Chat History
+            </button>
+
+            <div id="conversation-history"></div>
+
+
+            <input
+                type="file"
+                id="document-file"
+                accept=".txt,.pdf,.md,.docx"
+                hidden
+            >
+
+            
+            <div id="upload-status" class="upload-status" role="status" aria-live="polite" hidden></div>
+
+
+
+            <div class="sidebar-footer">
+                <div class="status-dot"></div>
+                <span>Local API</span>
+                <span id="api-status">Checking...</span>
+            </div>
+        </aside>
+
+        <main class="main">
+            <header class="topbar">
+                <div>
+                    <h3>Document Assistant</h3>
+                    <p>Ask questions about your knowledge base</p>
+                </div>
+
+                <div class="user-actions">
+                    <div class="user-badge" id="user-badge" title="Logged-in user">
+                        User
+                    </div>
+                    <button type="button" id="logout-btn" class="logout-btn">
+                        Logout
+                    </button>
+                </div>
+
+            </header>
+
+       
+            <!-- Login form -->
+            <section id="login-section" class="login-section">
+                
+                <div class="login-brand">
+                    <div class="login-logo">✦</div>
+                    <h2>NexusAI</h2>
+                    <p>Your knowledge, connected.</p>
+                </div>
+
+                <h3>Welcome back</h3>
+                <p class="login-subtitle">Sign in to continue to your workspace.</p>
+
+
+                <form id="login-form">
+                    <input
+                        type="email"
+                        id="login-email"
+                        placeholder="Email address"
+                        required
+                    >
+
+                    <input
+                        type="password"
+                        id="login-password"
+                        placeholder="Password"
+                        required
+                    >
+
+                    <button type="submit" id="login-btn">
+                        Login
+                    </button>
+
+                    <p id="login-status"></p>
+                </form>
+            </section>
+
+            <!-- Chat messages -->
+            <section id="chat-messages" class="chat-messages">
+                <div class="welcome">
+                    <div class="welcome-icon">✦</div>
+                    <h1>Your knowledge, connected.</h1>
+                    <p>
+                        Ask a question about your documents.
+                        NexusAI will find relevant information
+                        and show you its sources.
+                    </p>
+
+                    <div class="suggestions">
+                        <button type="button" class="suggestion">
+                            What information is available?
+                        </button>
+                        <button type="button" class="suggestion">
+                            Summarize a document
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+
+            
+            <!-- Uploaded Documents Management -->
+            <section id="documents-section" class="documents-section" hidden>
+                <div class="documents-header">
+                    <div>
+                        <h2>Uploaded Documents</h2>
+                        <p>View and manage your uploaded files.</p>
+                    </div>
+
+                    <button type="button" id="refresh-documents-btn">
+                        Refresh
+                    </button>
+                </div>
+                
+                <div class="document-search-container">
+                    <input
+                        type="search"
+                        id="document-search"
+                        placeholder="Search documents by filename..."
+                        aria-label="Search uploaded documents"
+                    />
+                </div>
+
+
+                <p id="documents-status" role="status" aria-live="polite"></p>
+
+                <div id="documents-list" class="documents-list"></div>
+            </section>
+
+
+
+            <form id="chat-form" class="chat-form">
+                <textarea
+                    id="question-input"
+                    placeholder="Ask NexusAI a question..."
+                    rows="1"
+                    required
+                ></textarea>
+                <button id="send-btn" type="submit" aria-label="Send">
+                    ↑
+                </button>
+                <p class="input-note">
+                    NexusAI can make mistakes. Verify important information.
+                </p>
+            </form>
+        </main>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
